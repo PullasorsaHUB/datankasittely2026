@@ -65,6 +65,7 @@ def get_highest_rating(df):
     # TODO: Find the highest rating
     
     dataset = df.sort_values("rating", ascending= False).head(1)
+    dataset = df["rating"].max()
 
     return dataset
     # Should return a float value instead of None

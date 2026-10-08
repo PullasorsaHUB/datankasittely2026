@@ -19,7 +19,7 @@ def main():
     # Fetch items
     # Täältä pitäisi tulla json tiedot ulos
     items = fetch_data(api_url)
-    if items == None:
+    if items is None:
         return
 
     print("Validating items…")
