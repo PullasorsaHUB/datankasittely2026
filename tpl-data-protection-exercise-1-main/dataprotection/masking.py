@@ -1,3 +1,6 @@
+import pandas as pd
+
+
 def mask(people):
     """
     TODO: Mask emails and phone numbers:
@@ -6,4 +9,11 @@ def mask(people):
     - return same datastructure with masked data
     """
     
-    pass
+    df = pd.DataFrame(people)
+    
+    parts = df["email"].str.split("@", n=1, expand=True) # Tää niiku vetää kahteenosaa s-postin @ merkin kohdasta
+    df["email"] = parts[0].str.replace(".", "*", regex=True) + "@" + parts[1]
+    
+    df["phone"] = df["phone"].str[:-2].str.replace(".", "*", regex=True) + df["phone"].str[-2:]
+    
+    return df.to_dict(orient="records")
